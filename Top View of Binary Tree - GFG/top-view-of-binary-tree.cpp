@@ -118,8 +118,8 @@ class Solution
             Node* t = q.front().first ;
             int h = q.front().second ;
             q.pop();
-            
-            if(!m[h]) 
+
+            if(m.find(h)==m.end())    //!m[h]) 
                m[h] = t->data ;
             
             if(t->left)
