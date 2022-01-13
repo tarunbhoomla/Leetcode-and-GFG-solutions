@@ -109,14 +109,14 @@ class Solution
         if(root->data == l+r)
            return root->data + l + r ;
         else
-           return INT_MAX ;
+           return -INT_MAX ;
     }
     bool isSumTree(Node* root)
     {
        if(root==NULL)
           return 1 ;
        
-       if(sum(root)==INT_MAX)
+       if(sum(root)==-INT_MAX)
             return false ;
       else 
         return true ;
