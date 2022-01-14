@@ -127,79 +127,81 @@ struct Node {
     
 // }
 
-// unordered_map<string,int> m;
-//     string ispresent(Node* root,vector<Node*> &v)
-//     {
-//         if(root==NULL)
-//         {
-//             return "";
-//         }
+
+    string ispresent(Node* root,vector<Node *> &v ,unordered_map<string,int> &m)
+    {
+        if(root==NULL)
+        {
+            return "";
+        }
         
-//         string lf=ispresent(root->left,v);
+        string lf=ispresent(root->left,v,m);
         
-//         string rt=ispresent(root->right,v);
+        string rt=ispresent(root->right,v,m);
         
         
-//         string s="";
-//         s+=to_string(root->data);
-//         s+='(';
-//         s+=lf;
-//         s+=')';
-//         s+='(';
-//         s+=rt;
-//         s+=')';
-//         m[s]++;
-//         if(m[s]>1 )
-//         {
-//             v.push_back(root);
+        string s="";
+        s+=to_string(root->data);
+        s+='(';
+        s+=lf;
+        s+=')';
+        s+='(';
+        s+=rt;
+        s+=')';
+        m[s]++;
+        if(m[s]>1 )
+        {
+            v.push_back(root);
             
-//             m[s]=INT_MIN;
-//         }
+            m[s]=INT_MIN;
+        }
     
-//         return s;
-//     }
+        return s;
+    }
     
-// vector<Node*> printAllDups(Node* root)
-// {
-//   vector<Node*> v;
-//   string s=ispresent(root,v); 
-//   return v;
-// }
-
-// A helper function for getting Duplicates subtrees using recursion
-string subTreeDups(Node* root, unordered_map<string, int>& mp, vector<Node*>& ans) {
-    if (!root)
-        return "";
-    // Store the string in preorder
-    string res = to_string(root->data);
-    res += '(';
-    res += subTreeDups(root->left, mp, ans);
-    res += ')';
-    res += '(';
-    res += subTreeDups(root->right, mp, ans);
-    res += ')';
-    // Subtree already present (Note that we use
-    // unordered_map instead of unordered_set
-    // because we want to print multiple duplicates
-    // only once, consider example of 4 in above
-    // subtree, it should be printed only once.
-    if (mp[res] == 1)
-        ans.push_back(root);
-    mp[res]++;
-    return res;
-}
-
-// you are required to complete this function
-// the function and return an vector of Node
-// which contains all the duplicate sub-tree
 vector<Node*> printAllDups(Node* root)
 {
-    // Code here
-    vector<Node*> ans;
-    unordered_map<string, int> mp; // For hashing the subtrees
-    subTreeDups(root, mp, ans);
-    return ans;
+  vector<Node*> v;
+  unordered_map<string,int> m;
+  string s=ispresent(root,v , m );
+  
+  return v;
 }
+
+// A helper function for getting Duplicates subtrees using recursion
+// string subTreeDups(Node* root, unordered_map<string, int>& mp, vector<Node*>& ans) {
+//     if (!root)
+//         return "";
+//     // Store the string in preorder
+//     string res = to_string(root->data);
+//     res += '(';
+//     res += subTreeDups(root->left, mp, ans);
+//     res += ')';
+//     res += '(';
+//     res += subTreeDups(root->right, mp, ans);
+//     res += ')';
+//     // Subtree already present (Note that we use
+//     // unordered_map instead of unordered_set
+//     // because we want to print multiple duplicates
+//     // only once, consider example of 4 in above
+//     // subtree, it should be printed only once.
+//     if (mp[res] == 1)
+//         ans.push_back(root);
+//     mp[res]++;
+//     return res;
+// }
+
+// // you are required to complete this function
+// // the function and return an vector of Node
+// // which contains all the duplicate sub-tree
+// vector<Node*> printAllDups(Node* root)
+// {
+//     // 
+//     vector<Node*> ans;
+//     unordered_map<string, int> mp; // For hashing the subtrees
+//     subTreeDups(root, mp, ans);
+//     return ans;
+// }
 
 // { Driver Code Starts.
 int main()
