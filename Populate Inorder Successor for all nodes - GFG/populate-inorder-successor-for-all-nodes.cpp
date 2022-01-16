@@ -126,7 +126,7 @@ struct Node
 class Solution
 {
 public:
-    void recursive(Node* &root ,  Node* &prev)
+    void recursive(Node* root ,  Node* &prev)
     {
         if(!root) return ;
         recursive(root->left , prev) ;
