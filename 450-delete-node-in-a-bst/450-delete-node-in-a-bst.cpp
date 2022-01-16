@@ -31,7 +31,12 @@ TreeNode* deleteNode(TreeNode *root, int x)
         root->right=deleteNode(root->right,x);
     
     else{
-        if(root->left==NULL){
+        if(root->left==NULL && root->right==NULL)
+            {
+                delete root;
+                return NULL;
+            }
+        else if(root->left==NULL){
             TreeNode *temp=root->right;
             delete root;
             return temp;
