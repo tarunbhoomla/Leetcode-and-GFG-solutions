@@ -118,8 +118,7 @@ void recursive(Node* root , int l , int  h , int &res)
       
     if(root->data >=l)
       recursive(root->left , l , h , res) ;
-    
-    
+
     if(root->data <= h)
       recursive(root->right , l , h , res) ; 
     
