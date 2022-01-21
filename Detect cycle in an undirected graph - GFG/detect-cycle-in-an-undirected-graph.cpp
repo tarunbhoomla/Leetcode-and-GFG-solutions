@@ -7,15 +7,19 @@ class Solution {
   public:
     // Function to detect cycle in an undirected graph.
 bool DFSRec(vector<int> adj[], int s,bool visited[], int parent) 
-{ 	
+{ 
     visited[s]=true;
     
-    for(int u:adj[s]){
-        if(visited[u]==false){
+    for(int u:adj[s])
+    {
+        if(visited[u]==false)
+        {
             if(DFSRec(adj,u,visited,s)==true)
-                {return true;}}
+                 return true;
+            
+        }
         else if(u!=parent)
-            {return true;}
+            return true;
     }
     return false;
 }
@@ -25,11 +29,12 @@ bool DFSRec(vector<int> adj[], int s,bool visited[], int parent)
      	for(int i=0;i<V; i++) 
 		visited[i] = false;
 		
-       for(int i=0;i<V;i++){
+       for(int i=0;i<V;i++)
+       {
           if(visited[i]==false)
               if(DFSRec(adj,i,visited,-1)==true)
                 return true;
-        }
+       }
        return false;
 	    
 	}
