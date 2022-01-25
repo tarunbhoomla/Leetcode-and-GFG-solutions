@@ -28,9 +28,9 @@ class Solution
         while(!q.empty())
         {
             int temp = q.front() ;
-            q.pop(); 
+            
             res.push_back(temp);
-
+ q.pop();
             
             for(auto it:adj[temp])
              {
