@@ -47,7 +47,7 @@ class Solution
         		if (result[j]==0) 
         		{ 
         			result[j] = arr[i].profit;  
-        			break;
+        			break; 
         		} 
         		
         	} 
