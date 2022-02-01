@@ -9,31 +9,39 @@ using namespace std;
 
 class Solution{
 public:
-vector<string> ans;
-void solve(vector<string>& dict, string s, int n, string psf)
+
+void recursive(unordered_set<string> mp,string s,string str ,vector<string> &res)
+{
+   if(s.length()==0) 
    {
-       if(s.length() == 0)
+       str.pop_back() ;
+       res.push_back(str);
+       return;
+   }
+   
+   for(int i=0;i<s.length();i++)
+   {
+       string left=s.substr(0,i+1);
+       if(mp.find(left)!=mp.end())
        {
-           psf.erase(psf.begin() + psf.length() - 1);
-           ans.push_back(psf);
-           return;
-       }
-       for(int i = 0 ; i < s.length(); i++)
-       {
-           string left_part = s.substr(0,i + 1);
-           if(find(dict.begin(),dict.end(),left_part) != dict.end())
-           {
-               string right_part = s.substr(i + 1);
-               solve( dict , right_part , n , psf+left_part+" ");
-           }
+           string right=s.substr(i+1);
+
+           recursive(mp,right,str+left+" ",res);
        }
    }
-   vector<string> wordBreak(int n, vector<string>& dict, string s)
-   {
-      string psf;
-      solve(dict,s,n,psf);
-      return ans;
-   }
+}
+vector<string> wordBreak(int n, vector<string>& dict, string s)
+ {
+    string str="";
+    vector<string> res;
+    unordered_set<string> mp;
+    for(int i=0;i<n;i++)
+    {
+      mp.insert(dict[i]) ;
+    }
+    recursive(mp,s,str,res);
+    return res;
+  }
 };
 
 // { Driver Code Starts.
