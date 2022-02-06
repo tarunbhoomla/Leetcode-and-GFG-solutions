@@ -5,52 +5,57 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
   public:
-  int dp[101][101];
-  int fun(string s,  string t , int m , int n)
-  {
-      if(m==s.size())
-        return t.size() -n ;
-      if(n==t.size())
-         return s.size() -m ;
+//   int dp[101][101];
+//   int fun(string s,  string t , int m , int n)
+//   {
+//       if(m==s.size())
+//         return t.size() -n ;
+//       if(n==t.size())
+//          return s.size() -m ;
          
-      if(dp[m][n] != -1)
-        return dp[m][n] ;
+//       if(dp[m][n] != -1)
+//         return dp[m][n] ;
          
-      if(s[m]==t[n])
-         return dp[m][n]=fun(s,t,m+1,n+1) ;
+//       if(s[m]==t[n])
+//          return dp[m][n]=fun(s,t,m+1,n+1) ;
       
-      return dp[m][n] = 1 + min( fun(s,t,m+1,n)
-                     ,min(fun(s,t,m,n+1)
-                     ,fun(s,t,m+1,n+1))) ;
-  }
-    int editDistance(string s, string t) 
+//       return dp[m][n] = 1 + min( fun(s,t,m+1,n)
+//                      ,min(fun(s,t,m,n+1)
+//                      ,fun(s,t,m+1,n+1))) ;
+//   }
+//     int editDistance(string s, string t) 
+//     {
+//         memset(dp,-1,sizeof(dp)) ;
+//         return fun(s,t ,0,0) ;
+//     }
+
+int editDistance(string s, string t) 
+{
+    int dp[s.size()+1][t.size()+1] = {0};
+    
+    for(int i=0 ;i<=s.size() ;i++)
     {
-        memset(dp,-1,sizeof(dp)) ;
-        return fun(s,t ,0,0) ;
+        dp[i][0] = i ;
     }
+    for(int i=0 ;i<=t.size() ;i++)
+    {
+        dp[0][i] = i ;
+    }
+    
+    for(int i=1 ;i<=s.size() ;i++)
+    {
+        for(int j=1 ;j<=t.size() ;j++)
+        {
+            if(s[i-1] == t[j-1])
+               dp[i][j] = dp[i-1][j-1] ;
+            else
+               dp[i][j] = 1 + min(dp[i-1][j]   , min(dp[i][j-1] , dp[i-1][j-1])) ;
+        }
+    }
+    
+    return dp[s.size()][t.size()] ;
+}
 
-// int helper(string a,string b, int n,int m,int dp[101][101]){
-//       if(n == 0) return (m);
-//       if(m == 0) return (n);
-       
-//       if(dp[n][m] != -1) return (dp[n][m]);
-       
-//       if(a[n-1] == b[m-1]){
-//           return dp[n][m] = helper(a,b,n-1,m-1,dp);
-//       }
-//       else{
-//           int res1 = 1 + helper(a,b,n,m-1,dp);
-//           int res2 = 1 + helper(a,b,n-1,m,dp);
-//           int res3 = 1 + helper(a,b,n-1,m-1,dp);
-//           return dp[n][m] = (min(res1,min(res2,res3)));
-//       }
-//   }
-
-//   int editDistance(string s, string t) {
-//       int dp[101][101];
-//       memset(dp,-1,sizeof(dp));
-//       return helper(s,t,s.length(),t.length(),dp);
-//   }
 };
 
 // { Driver Code Starts.
