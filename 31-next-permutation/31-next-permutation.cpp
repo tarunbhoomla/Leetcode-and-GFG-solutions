@@ -45,6 +45,12 @@ public:
                  reverse(nums.begin(),nums.end()) ;
                  return ;
              }
+             int n = nums.size() ;
+              if(nums[n-1]>nums[n-2])
+             { 
+              swap(nums[n-1], nums[n-2]);
+              return ;
+             }
              
              int pos2 = INT_MIN ;
              for(int i=nums.size()-1 ;i>=0 ;i--)
