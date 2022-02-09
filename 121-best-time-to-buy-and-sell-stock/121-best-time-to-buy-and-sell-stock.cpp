@@ -3,9 +3,9 @@ public:
     int maxProfit(vector<int>& prices) 
     {
         int buy = prices[0] ;
-        int sell = 0 ;
+        int sell;
         int profit = 0 ;
-        int maxProf = INT_MIN ;
+        int maxProf = 0 ;
         for(int i=1 ;i< prices.size() ;i++)
         {
              if(prices[i] < buy)
@@ -14,13 +14,12 @@ public:
              }
             else
             {
-                sell = prices[i] ;
-                profit = sell-buy ;
+
+                profit = prices[i]-buy ;
                 maxProf = max(maxProf,profit) ;
             }
         }
-        if(maxProf==INT_MIN)
-              return 0 ;
+
         return maxProf; 
         
         
