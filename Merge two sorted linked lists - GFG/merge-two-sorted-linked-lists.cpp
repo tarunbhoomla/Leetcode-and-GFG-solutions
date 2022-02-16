@@ -118,20 +118,24 @@ Node* sortedMerge(Node* head1, Node* head2)
         }
     }
     
-    while(head1)
-    {
-        temp->next = head1 ;
-        temp = temp->next ;
-        head1 = head1->next ;
-    }
-    while(head2)
-    {
-        temp->next = head2 ;
-        temp= temp->next ;
-        head2 = head2->next ;
-    }
+    // while(head1)
+    // {
+    //     temp->next = head1 ;
+    //     temp = temp->next ;
+    //     head1 = head1->next ;
+    // }
     
-    temp->next = NULL ;
+    if(head1)
+      temp->next = head1 ;
+    // while(head2)
+    // {
+    //     temp->next = head2 ;
+    //     temp= temp->next ;
+    //     head2 = head2->next ;
+    // }
+    if(head2)
+      temp->next = head2 ;
+    // temp->next = NULL ;
     return head_real ;
     
     // Node* a= head1;
