@@ -34,12 +34,12 @@ class Solution
     vector<int> JobScheduling(Job arr[], int n) 
     { 
         sort(arr , arr+n , cmp) ;
-        int maxDead  = 0 ;
-        for(int i=0 ;i<n ;i++)
-        {
-            maxDead = max(maxDead ,arr[i].dead) ;
-        }
-        vector<bool> vis (maxDead,false) ;
+        // int maxDead  = 0 ;
+        // for(int i=0 ;i<n ;i++)
+        // {
+        //     maxDead = max(maxDead ,arr[i].dead) ;
+        // }
+        vector<bool> vis (n,false) ;
         
         int maxprofit=0 ;
         int jobcnt = 0 ;
