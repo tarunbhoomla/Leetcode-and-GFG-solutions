@@ -22,34 +22,29 @@ class Solution
 {
     public:
     //Function to get the maximum total value in the knapsack.
-    static bool cmp(Item a,Item b)
+    static bool cmp(Item x1 , Item x2)
     {
-        double x1 =  ((double)a.value/(double)a.weight) ;
-                    
-         double x2 = ((double)b.value/(double)b.weight) ;
-         
-         
-         return x1 > x2  ;
+        return ((double)x1.value/(double)x1.weight) > ((double)x2.value/(double)x2.weight) ;
     }
     double fractionalKnapsack(int W, Item arr[], int n)
     {
-        sort(arr,arr+n,cmp) ;
-        double res =0 ;
+        sort(arr , arr+n , cmp) ;
+        double profit = 0 ;
         for(int i=0 ;i<n ;i++)
         {
-            if(arr[i].weight <= W)
+            if(W >= arr[i].weight)
             {
-                res += arr[i].value ;
+                profit += arr[i].value ;
                 W -= arr[i].weight ;
             }
             else
             {
-                res += (double) arr[i].value*W / (double)arr[i].weight ;
-                break ;
+                profit +=(((double)arr[i].value/(double)arr[i].weight) * W) ;
+                return profit;
             }
         }
         
-        return res ;
+        return profit ;
     }
         
 };
