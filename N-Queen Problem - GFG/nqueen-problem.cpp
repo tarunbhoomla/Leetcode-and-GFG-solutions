@@ -24,8 +24,7 @@ bool isSafe(int i,int j,vector<string> &temp)
    }
    return true;
 }
-void solve(int i,int n,vector<int> &v,
-vector<vector<int>> &ans,vector<string> &temp)
+void solve(int i,int n,vector<int> &v,vector<vector<int>> &ans,vector<string> &temp)
 {
    if(i==n)
    {
