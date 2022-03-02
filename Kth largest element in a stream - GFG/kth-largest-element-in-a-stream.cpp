@@ -14,11 +14,21 @@ class Solution {
         {
             pq.push(arr[i]) ;
             if(pq.size() < k)
-              res.push_back(-1) ;
-            if(pq.size() >k)
-               pq.pop() ;
+            {
+               res.push_back(-1) ; 
+               continue ;
+            }
+            
+            if(pq.size() > k)
+              pq.pop() ;            
+            
             if(pq.size()==k)
+            {
               res.push_back(pq.top()) ;
+
+            }
+            
+
 
         }
         
