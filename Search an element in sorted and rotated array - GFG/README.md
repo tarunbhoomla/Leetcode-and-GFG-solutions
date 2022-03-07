@@ -1,5 +1,5 @@
 # Search an element in sorted and rotated array
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a sorted and rotated array <strong>A </strong>of N distinct elements which is rotated at some point, and given an element <strong>K</strong>. The task is to find the index of the given element K in the array A.</span></p>
 
