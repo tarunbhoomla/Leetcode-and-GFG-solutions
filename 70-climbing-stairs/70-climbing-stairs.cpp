@@ -1,7 +1,9 @@
-    int dp[46] ;
+    
 class Solution {
+private:
+    int dp[46] ;
 public:
-
+    
     int recursive(int n)
     {          
         if(n<0)
