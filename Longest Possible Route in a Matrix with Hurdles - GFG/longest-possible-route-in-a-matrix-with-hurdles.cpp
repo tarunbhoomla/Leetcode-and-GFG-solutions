@@ -10,7 +10,7 @@ using namespace std;
 
 class Solution {
 public:
-    int solve(vector<vector<int>>arr , int r , int c , int i , int j , int xd ,int yd)
+    int solve(vector<vector<int>>&arr , int r , int c , int i , int j , int xd ,int yd)
     {
         if(i<0 || i>=r || j<0 || j>=c || arr[i][j]==0)
           return -INT_MAX/2 ;
@@ -23,7 +23,7 @@ public:
        int q = solve(arr,r,c,i,j+1,xd,yd) + 1;
        int t = solve(arr,r,c,i-1,j,xd,yd) + 1;
        int s = solve(arr,r,c,i,j-1,xd,yd) + 1;
-       
+       arr[i][j] = 1 ;
        return max(p,max(q,max(t,s))) ;
     }
     int longestPath(vector<vector<int>> matrix, int xs, int ys, int xd, int yd)
