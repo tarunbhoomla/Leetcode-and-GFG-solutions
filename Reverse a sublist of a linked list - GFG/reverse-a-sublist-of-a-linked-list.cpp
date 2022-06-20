@@ -30,36 +30,64 @@ struct Node {
 
 class Solution
 {
-   public:
-   Node* reverseBetween(Node* head, int m, int n)
-   {
-       vector<int>v;
-       Node* a=head;
-       while(a)
-       {
-           v.push_back(a->data);
-           a=a->next;
-       }
-       Node* b=new Node(-1);
-       a=b;
-       int i;
-       for(i=0;i<m-1;i++)
-       {
-           b->next=new Node(v[i]);
-           b=b->next;
-       }
-       for(i=n-1;i>=m-1;i--)
-       {
-           b->next=new Node(v[i]);
-           b=b->next;
-       }
-       for(i=n;i<v.size();i++)
-       {
-           b->next=new Node(v[i]);
-           b=b->next;
-       }
-       return a->next;
-   }
+    public:
+    
+    Node *reverse(Node *head){
+        if(!head || !head->next)return head;
+        
+        Node *new_head=reverse(head->next);
+        head->next->next=head;
+        head->next=NULL;
+        
+        return new_head;
+    }
+    
+    Node *pos(Node *head,int k){
+        int count=0;
+        Node *temp=head,*prev=NULL;
+        while(temp){
+            count++;
+            if(count==k && prev)return prev;
+            prev=temp;
+            temp=temp->next;
+            
+        }
+        
+        return NULL;
+    }
+    
+    Node* reverseBetween(Node* head, int m, int n)
+    {
+        if(!head)return NULL;
+        if(m==n)return head;
+        Node *rem=NULL;
+        Node *start=pos(head,m);
+        Node *end=pos(head,n);
+        //cout<<end->data;
+        if(end->next->next!=NULL)rem=end->next->next;
+        
+       
+        if(end->next->next!=NULL)end->next->next=NULL;
+        //to tackle condition if m is head
+        if(!start){
+            head=reverse(head);
+            //cout<<"head";
+        }
+        else{
+            start->next=reverse(start->next);
+        }
+        
+        Node*temp=head;
+        while(temp && temp->next){
+            temp=temp->next;
+        }
+        
+        temp->next=rem;
+    
+        
+      return head;
+        
+    }
 };
 // { Driver Code Starts.
 
