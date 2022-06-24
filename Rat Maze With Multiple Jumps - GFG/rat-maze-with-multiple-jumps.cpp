@@ -15,7 +15,8 @@ public:
             res[i][j]=1 ;
             return true ;
         }
-
+       if(m[i][j]==0)
+         return false;
         res[i][j] = 1 ;
         int d = m[i][j] ;
         for(int k=1 ;k<=d ;k++)
