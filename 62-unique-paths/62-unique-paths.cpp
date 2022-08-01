@@ -1,24 +1,24 @@
 class Solution {
 public:
-    int dp[101][101] ;
-    int recursive( int m , int n , int x , int y)
+    int fun(int i ,int j , int m , int n , vector<vector<int>> &dp)
     {
-        if(x==m-1 && y==n-1)
-              return 1 ;
-        if(dp[x][y]!=-1)
-              return dp[x][y] ;
-        int count1 = 0 ;
-        int count2 = 0 ;
-        if(x<m-1)
-            count1 = recursive(m,n,x+1,y) ;
-        if(y<n-1)
-            count2 = recursive(m,n,x,y+1);
+        if(i<0 || j<0 || i>=m || j>=n)
+            return 0 ;
         
-        return dp[x][y] =count1+count2 ;
+        if(i==m-1 && j==n-1)
+            return 1 ;
+        
+        if(dp[i][j] != -1)
+             return dp[i][j] ;
+        
+        int down = fun(i+1,j ,m,n ,dp) ;
+        int right = fun(i,j+1 ,m ,n ,dp) ;
+
+        return dp[i][j] = down+right ;
     }
     int uniquePaths(int m, int n) 
-    {  
-        memset(dp,-1,sizeof(dp));
-        return recursive(m,n , 0 ,0) ;
+    {
+        vector<vector<int>> dp(m+1 ,vector<int>(n+1 ,-1)) ;
+        return fun(0,0,m,n ,dp) ;
     }
 };
